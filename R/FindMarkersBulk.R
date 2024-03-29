@@ -41,7 +41,7 @@ FindMarkersBulk <- function(seurat, clus_ident, sample_ident, expfilt_counts = 1
     groups <- seurat@meta.data[, c(clus_ident, sample_ident)]
     groups$iscluster <- as.vector(groups[[clus_ident]])
     groups$iscluster[which(groups$iscluster != cluster)] <- "other"
-
+browse()
     # Aggregate across cluster-sample groups
     pb <- aggregate.Matrix(t(seurat@assays[[assay]]@layers$counts), groupings = groups[,2:3], fun = "sum")
 
