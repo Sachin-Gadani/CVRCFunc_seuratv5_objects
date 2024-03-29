@@ -43,7 +43,7 @@ FindMarkersBulk <- function(seurat, clus_ident, sample_ident, expfilt_counts = 1
     groups$iscluster[which(groups$iscluster != cluster)] <- "other"
 
     # Aggregate across cluster-sample groups
-    pb <- aggregate.Matrix(t(seurat@assays[[assay]]@counts), groupings = groups[,2:3], fun = "sum")
+    pb <- aggregate.Matrix(t(seurat@assays[[assay]]@layers$counts), groupings = groups[,2:3], fun = "sum")
 
     # Not every cluster is present in all samples; create a vector that represents how to split samples
     splitf <- sapply(stringr::str_split(rownames(pb), pattern = "_",  n = 2), `[`, 2)
